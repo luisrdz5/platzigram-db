@@ -4,7 +4,10 @@
   "description": "Cliente DB para Platzigram",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/luisrdz5/platzigram-db/issues"
   },
-  "homepage": "https://github.com/luisrdz5/platzigram-db#readme"
+  "homepage": "https://github.com/luisrdz5/platzigram-db#readme",
+  "devDependencies": {
+    "standard": "^8.6.0"
+  }
 }

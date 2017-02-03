@@ -4,7 +4,8 @@
   "description": "Cliente DB para Platzigram",
   "main": "index.js",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "test": "npm run lint && ava"
   },
   "standard": {
     "parser": "babel-eslint"

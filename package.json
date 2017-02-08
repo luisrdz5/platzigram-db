@@ -22,5 +22,10 @@
   "homepage": "https://github.com/luisrdz5/platzigram-db#readme",
   "devDependencies": {
     "standard": "^8.6.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "co": "^4.6.0",
+    "rethinkdb": "^2.3.3"
   }
 }

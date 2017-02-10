@@ -18,3 +18,4 @@ uuid-base62: libreria para generar id's unicos
 - Se agregaron las validaciones para la api que estamos desarrollando con test para los hashtags.
 - Se agrego la libreria co como intermediario de las promesas y bluebird para implementar promesas y se realizo el escript de conexion basico para la base de datos db.js.
 - Se instalo uuid-base62 para generar id unicos para nuestras fotos y se agregaron metodos de test que conectaran y desconectaran a nuestra bd 
+- Se agrego el codigo para insertar los datos de la imagen en la Base de Datos

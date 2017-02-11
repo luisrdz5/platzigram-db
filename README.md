@@ -21,3 +21,4 @@ uuid-base62: libreria para generar id's unicos
 - Se agrego el codigo para insertar los datos de la imagen en la Base de Datos
 - Se agrego funcionalidad para separar tags de la imagen y se creo un id mas corto para la imagen
 - Se añadio la funcionalidad y el test para los likes de la imagen
+- Se añadio la funcionalidad y el test para obtener una imagen

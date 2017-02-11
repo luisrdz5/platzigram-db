@@ -6,15 +6,17 @@ const Db = require('../lib/db.js')
 const r = require('rethinkdb')
 const fixtures = require('./fixtures/')
 
-const dbName = `platzigram_${uuid.v4()}`
-const db = new Db({ db: dbName })
-
-test.before('creando base de datos', async t => {
+test.beforeEach('creando base de datos', async t => {
+  const dbName = `platzigram_${uuid.v4()}`
+  const db = new Db({ db: dbName })
   await db.connect()
+  t.context.db = db
+  t.context.dbName = dbName
   t.true(db.connected, 'debera estar conectado')
 })
 
 test('save image', async t => {
+  let db = t.context.db
   t.is(typeof db.saveImage, 'function', 'saveImage es una funcion')
   let image = fixtures.getImage()
 
@@ -23,24 +25,24 @@ test('save image', async t => {
   t.is(created.url, image.url)
   t.is(created.likes, image.likes)
   t.is(created.liked, image.liked)
-  console.log(created.tags)
   t.deepEqual(created.tags, [ 'awesome', 'tags', 'platzi' ])
   t.is(created.user_id, image.user_id)
   t.is(typeof created.id, 'string')
   t.is(created.public_id, uuid.encode(created.id))
   t.truthy(created.createdAt)
 })
+test.afterEach.always('desconectando de la base de datos', async t => {
+  let db = t.context.db
+  let dbName = t.context.dbName
 
-test.after('desconectando de la base de datos', async t => {
   await db.disconnect()
   t.false(db.connected, 'deberia estar desconectado')
-})
-test.after.always('limpiando base de datos', async t => {
   let conn = await r.connect({host: '192.168.4.145', port: 28015})
   await r.dbDrop(dbName).run(conn)
 })
 
 test('like image', async t => {
+  let db = t.context.db
   t.is(typeof db.likeImage, 'function', 'likeImage es una funcion ')
 
   let image = fixtures.getImage()
@@ -51,6 +53,7 @@ test('like image', async t => {
   t.is(result.likes, image.likes + 1)
 })
 test('get image', async t => {
+  let db = t.context.db
   t.is(typeof db.getImage, 'function', 'getImage debe ser una funcion')
 
   let image = fixtures.getImage()
@@ -59,3 +62,13 @@ test('get image', async t => {
 
   t.deepEqual(created, result)
 })
+test('list all images', async t => {
+  let db = t.context.db
+  let images = fixtures.getImages(3)
+  let saveImages = images.map(img => db.saveImage(img))
+  let created = await Promise.all(saveImages)
+  let result = await db.getImages()
+
+  t.is(created.length, result.length)
+})
+

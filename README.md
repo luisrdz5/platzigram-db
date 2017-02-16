@@ -22,3 +22,5 @@ uuid-base62: libreria para generar id's unicos
 - Se agrego funcionalidad para separar tags de la imagen y se creo un id mas corto para la imagen
 - Se añadio la funcionalidad y el test para los likes de la imagen
 - Se añadio la funcionalidad y el test para obtener una imagen
+- Se añadio la funcionalidad y el test para obtener varias imagenes y se cambiaron los test para crear y eliminar conexiones a la bd en cada test para que no se afecten entre ellos.
+- Se añadieron test y funciones para generar Hash de los usuarios y poder guardarlos en la bd

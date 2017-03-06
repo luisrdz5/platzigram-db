@@ -24,3 +24,4 @@ uuid-base62: libreria para generar id's unicos
 - Se añadio la funcionalidad y el test para obtener una imagen
 - Se añadio la funcionalidad y el test para obtener varias imagenes y se cambiaron los test para crear y eliminar conexiones a la bd en cada test para que no se afecten entre ellos.
 - Se añadieron test y funciones para generar Hash de los usuarios y poder guardarlos en la bd
+- Se agrego la funcion getUser que obtiene el usuario de la bd y se agrego un indice a la bd para poder hacer las busquedas
